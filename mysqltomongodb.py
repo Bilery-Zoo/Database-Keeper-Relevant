@@ -15,7 +15,7 @@ import pymongo
 import MySQLdb
 
 
-class MySQL2Mongo:
+class MySQLtoMongo:
     """
     Self test successfully under Python2.7.12
     """
@@ -191,7 +191,7 @@ if __name__ == "__main__":
                "port": 27017}
     con_mongo = pymongo.MongoClient(**MongoDB)
 
-    STT = MySQL2Mongo(ms_con=con_mysql, ms_db="information_schema", ms_tb="TABLES",
+    STT = MySQLtoMongo(ms_con=con_mysql, ms_db="information_schema", ms_tb="TABLES",
                       mg_con=con_mongo, mg_db="information_schema", mg_cl="TABLES")
     print(STT)
     STT.wridata()

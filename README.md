@@ -1,2 +1,2 @@
-# MySQL-to-MongoDB
-read table from MySQL and write to MongoDB collection 
+# Database-Keeper-Relevant 
+database maintenance relevant

@@ -38,4 +38,4 @@ CREATE EVENT Event_table_Partition
 		END $$$
 
 
-delimiter $$$
+delimiter ;

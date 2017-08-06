@@ -1,7 +1,7 @@
 delimiter $$$
 
 
-CREATE EVENT table_days_physicalpartition
+CREATE DEFINER = 'root'@'%' EVENT table_days_physicalpartition
 	ON SCHEDULE EVERY 1 DAY STARTS '%Y%m%d %T' /* man modify */
 	COMMENT 'Table `event_table` physical partition by Day'
 	/* create_author: Bilery Zoo(652645572@qq.com)

@@ -17,16 +17,16 @@ CREATE DEFINER = 'root'@'%' PROCEDURE tab_crossdb_bak(IN p_srcdb VARCHAR(25), IN
 		SET @cre := CONCAT('CREATE TABLE `', p_tardb, '`.`', p_baktb, '` LIKE `', p_srcdb, '`.`', p_baktb, '`;');
 		SET @ins := CONCAT('INSERT INTO `', p_tardb, '`.`', p_baktb, '` SELECT * FROM `', p_srcdb, '`.`', p_baktb, '`;');
 		
+        -- do drop
+        PREPARE DRO FROM @dro;
+        EXECUTE DRO;
+
+        -- do create
+        PREPARE CRE FROM @cre;
+        EXECUTE CRE;
+
 		START TRANSACTION;
-		
-			-- do drop
-			PREPARE DRO FROM @dro;
-			EXECUTE DRO;
-			
-			-- do create
-			PREPARE CRE FROM @cre;
-			EXECUTE CRE;
-			
+
 			-- do insert
 			PREPARE INS FROM @ins;
 			EXECUTE INS;

@@ -16,17 +16,18 @@ CREATE DEFINER = 'root'@'%' EVENT table_days_physicalpartition
 			SET _tab := (SELECT CONCAT('`event_database`.`event_table_', DATE_FORMAT(CURDATE(), '%Y%m%d') - 1, '`'));
 			SET @cre := CONCAT('CREATE TABLE ', _tab, ' LIKE `event_database`.`event_table`;');
 			SET @ins := CONCAT('INSERT INTO ', _tab, ' SELECT * FROM `event_database`.`event_table` WHERE DATE(`create_ts`) = CURDATE() - INTERVAL 1 DAY;');
-			
-			START TRANSACTION;
+
 				
 				-- create same table named by suffix of yesterday
 				PREPARE CRE FROM @cre;
 				EXECUTE CRE;
-				
+
+			START TRANSACTION;
+
 				-- insert yesterday records into yesterday table
 				PREPARE INS FROM @ins;
 				EXECUTE INS;
-				
+
 				-- delete yesterday table backuped old records
 				DELETE FROM `event_database`.`event_table` WHERE DATE(`create_ts`) = CURDATE() - INTERVAL 1 DAY;
 

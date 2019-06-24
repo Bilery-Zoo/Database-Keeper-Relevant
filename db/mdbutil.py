@@ -33,7 +33,7 @@ def generate_insert(table, items: dict, database='', is_escape_string=False, con
         data = items[column]
         if data == 0 or data:
             if is_escape_string:
-                assert c_flag, con
+                assert c_flag and con
                 data = con.escape_string(str(data)).decode(charset)
             sql_l += "`{key}`, ".format(key=column)
             sql_r += "'{value}', ".format(value=data)

@@ -1,5 +1,3 @@
-File tree:
-	mdb/
 	├── baseutil.py
 		base function utility
 	├── log.py

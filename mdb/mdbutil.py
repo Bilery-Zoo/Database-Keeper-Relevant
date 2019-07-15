@@ -1,9 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 
 """
-create_author : 蛙鳜鸡鹳狸猿
+create_author : Bilery Zoo(652645572@qq.com)
 create_time   : 2019-06-09
 program       : *_* MySQL/MariaDB handler utility *_*
 """
@@ -74,7 +74,6 @@ def generate_group_by(columns, alias: str = '') -> str:
 def get_con(use_c_api=True, charset="utf8", use_unicode=False, autocommit=False, **kwargs):
     """
     Get MySQL connection.
-    :return: MySQL connection object.
     """
     if use_c_api and c_flag:
         con = _mysql_connector.MySQL()
@@ -119,7 +118,7 @@ def execute_sql_quiet(con, sql, use_c_api=True, is_commit=True, is_close=True, i
                 cur.close()
             con.close()
         if is_info:
-            logger.info(baseutil.lines_str_aggregation(sql))
+            logger.info(baseutil.combine_lines_str(sql))
 
 
 @log.log(logger=logger)
@@ -173,7 +172,7 @@ def execute_sql_return(con, sql, use_c_api=True, dictionary=True, is_close=True,
                 cur.close()
             con.close()
         if is_info:
-            logger.info(baseutil.lines_str_aggregation(sql))
+            logger.info(baseutil.combine_lines_str(sql))
 
 
 @log.log(logger=logger)
@@ -206,7 +205,7 @@ def check_dql_existence(con, sql, use_c_api=True, is_exit=False, is_raise=True, 
                 cur.close()
             con.close()
         if is_info:
-            logger.info(baseutil.lines_str_aggregation(sql))
+            logger.info(baseutil.combine_lines_str(sql))
 
 
 if __name__ == "__main__":

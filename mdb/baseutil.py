@@ -1,9 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 
 """
-create_author : 蛙鳜鸡鹳狸猿
+create_author : Bilery Zoo(652645572@qq.com)
 create_time   : 2019-06-06
 program       : *_* base function utility *_*
 """
@@ -11,7 +11,7 @@ program       : *_* base function utility *_*
 
 def str_dict_key(_dict):
     """
-    Convert dict keys in Python's built-in Bytes data type to formatted str type.
+    Convert dict keys in Python's built-in Bytes data type into formatted str type.
     """
     dict_ = {}
     for subs in _dict:
@@ -21,7 +21,7 @@ def str_dict_key(_dict):
 
 def str_dict_value(_dict):
     """
-    Convert dict values in Python's built-in Bytes and / or other data types to formatted str type.
+    Convert dict values in Python's built-in Bytes and / or other data types into formatted str type.
     """
     for subs in _dict:
         if _dict[subs]:
@@ -31,7 +31,10 @@ def str_dict_value(_dict):
                 _dict[subs] = str(_dict[subs])
 
 
-def lines_str_aggregation(multi_line_str: str) -> str:
+def combine_lines_str(multi_line_str: str) -> str:
+    """
+    Convert str in lines into a single line.
+    """
     single_line_str = ''
     for line in multi_line_str.split('\n'):
         if line:

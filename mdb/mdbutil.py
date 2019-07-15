@@ -2,10 +2,18 @@
 # -*- coding: utf-8 -*-
 
 
+"""
+create_author : 蛙鳜鸡鹳狸猿
+create_time   : 2019-06-09
+program       : *_* MySQL/MariaDB handler utility *_*
+"""
+
+
 import sys
 import typing
 
 import baseutil
+
 import log
 logger = log.LOG().logger()
 
@@ -84,6 +92,7 @@ def get_con(use_c_api=True, charset="utf8", use_unicode=False, autocommit=False,
     return mysql.connector.connect(charset=charset, use_unicode=use_unicode, autocommit=autocommit, **kwargs)
 
 
+@log.log(logger=logger)
 def execute_sql_quiet(con, sql, use_c_api=True, is_commit=True, is_close=True, is_exit=False,
                       is_raise=True, is_info=True):
     """
@@ -113,6 +122,7 @@ def execute_sql_quiet(con, sql, use_c_api=True, is_commit=True, is_close=True, i
             logger.info(baseutil.lines_str_aggregation(sql))
 
 
+@log.log(logger=logger)
 def execute_sql_return(con, sql, use_c_api=True, dictionary=True, is_close=True, is_exit=False, is_raise=True,
                        is_info=True, **kwargs) -> typing.Generator:
     """
@@ -166,6 +176,7 @@ def execute_sql_return(con, sql, use_c_api=True, dictionary=True, is_close=True,
             logger.info(baseutil.lines_str_aggregation(sql))
 
 
+@log.log(logger=logger)
 def check_dql_existence(con, sql, use_c_api=True, is_exit=False, is_raise=True, is_close=True, is_info=True) -> bool:
     """
     Check whether SQL(DQL) query has result to return or not.
@@ -223,8 +234,8 @@ if __name__ == "__main__":
     # print(execute_sql_quiet(con_c, "CREATE DATABASE `mdbutil`;"))
     # print(execute_sql_quiet(con_p, "DROP DATABASE `mdbutil`;", use_c_api=False))
     # sql_t = 'SELECT `TABLE_NAME`, `CREATE_TIME` FROM `information_schema`.`TABLES` LIMIT 2;'
-    # sql_f = 'SELECT `TABLE_NAME`, `CREATE_TIME` FROM `information_schema`.`TABLES` WHERE `TABLE_NAME` = "NULL" LIMIT 2;'
-    # print(check_dql_existence(con_p, sql_f, use_c_api=False))
+    sql_f = 'SELECT `TABLE_NAME`, `CREATE_TIME` FROM `information_schema`.`TABLES` WHERE `TABLE_NAME` = "NULL" LIMIT 2;'
+    print(check_dql_existence(con_p, sql_f, use_c_api=False))
     # print(check_dql_existence(con_c, sql_t))
     # for r in execute_sql_return(con_p, sql_t, use_c_api=False, is_info=False, dictionary=False):
     #     print(r)

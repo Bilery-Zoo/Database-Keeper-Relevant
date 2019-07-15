@@ -2,6 +2,13 @@
 # -*- coding: utf-8 -*-
 
 
+"""
+create_author : 蛙鳜鸡鹳狸猿
+create_time   : 2019-03-20
+program       : *_* log logging handler *_*
+"""
+
+
 import sys
 import logging
 import functools
@@ -13,7 +20,8 @@ class LOG(object):
     """
 
     def __init__(self, level=logging.INFO, stream=sys.stdout, filename=None, filemode='a', datefmt="%Y-%m-%d %H:%M:%S",
-                 format="%(asctime)s\t%(levelname)s\t< Module: %(module)s, Function: %(funcName)s >\t%(message)s", **kwargs):
+                 format="%(asctime)s\t%(levelname)s\t< Module: %(module)s, Function: %(funcName)s >\t%(message)s",
+                 **kwargs):
         """
         LOG init.
         :param level: arg pass to standard library logging.basicConfig().

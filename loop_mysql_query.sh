@@ -6,6 +6,6 @@
 
 for db in $(mysql --login-path=mypath -N -e "SELECT \`schema_name\` FROM \`information_schema\`.\`schemata\` LIMIT 4;")
 do
-    # do something. eg:
+	# do something. eg:
 	echo ${db}
 done
